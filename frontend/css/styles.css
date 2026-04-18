@@ -52,10 +52,12 @@ body {
   color: #64748b;
 }
 
-/* Horizontal nav below page title */
+/* Horizontal nav below page title — compact, centered cluster */
 .top-nav {
-  margin: 0 0 20px;
-  padding: 8px 10px;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto 20px;
+  padding: 5px 6px;
   background: var(--card);
   border: 1px solid var(--line);
   border-radius: 10px;
@@ -67,18 +69,19 @@ body {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 6px;
+  justify-content: center;
+  gap: 4px;
 }
 
 .top-nav__link {
   display: inline-flex;
   align-items: center;
-  padding: 10px 16px;
-  border-radius: 8px;
+  padding: 6px 12px;
+  border-radius: 7px;
   text-decoration: none;
   color: var(--text);
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 0.8125rem;
   border: 1px solid transparent;
   transition: background-color 0.15s ease, color 0.15s ease;
 }
@@ -109,9 +112,9 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 1.25rem;
-  height: 1.25rem;
-  margin-right: 8px;
+  width: 1.05rem;
+  height: 1.05rem;
+  margin-right: 6px;
   flex-shrink: 0;
   color: inherit;
 }
@@ -313,12 +316,17 @@ tr:hover {
     padding: 16px 14px 32px;
   }
 
+  .top-nav {
+    width: 100%;
+    max-width: 320px;
+  }
+
   .top-nav__list {
     flex-direction: column;
     align-items: stretch;
   }
 
   .top-nav__link {
-    justify-content: flex-start;
+    justify-content: center;
   }
 }
