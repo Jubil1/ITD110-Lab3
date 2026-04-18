@@ -107,7 +107,7 @@ Use the URL printed in the terminal (often `http://localhost:3000`).
 
 **Note:** `npm serve` is not a valid command. You must use **`npx`** (as above) so Node runs the `serve` package.
 
-Use the sidebar to switch between **Students**, **Faculty**, and **Courses**. Create courses first if you need enrollment / teaching assignments in the dropdowns.
+Use the **top navigation** (under the page title) to switch between **Students**, **Faculty**, and **Courses**. Create courses first if you need enrollment / teaching assignments in the dropdowns.
 
 ## Course activity checklist (ITD110 Lab 3)
 
@@ -115,7 +115,7 @@ Use the sidebar to switch between **Students**, **Faculty**, and **Courses**. Cr
 |---------------|--------------------------------|
 | **≥ 2 nodes + relationships** | Create e.g. a **Course** and a **Student** (with **ENROLLED_IN**) and/or **Faculty** (with **TEACHES**). Use Neo4j Browser: `MATCH (n) RETURN n` to show the graph. |
 | **Full CRUD** | Each entity has **Create** (form submit), **Read** (tables + load for Edit), **Update** (Edit + save), **Delete** (Delete + confirm) via `/api/students`, `/api/faculty`, `/api/courses`. |
-| **Improved UI/UX** | Sidebar branding, status messages, field hints (e.g. multi-select, “add courses first”), skip link, scrollable tables on small screens, and empty-state messaging. |
+| **Improved UI/UX** | Top navigation under the page title, site branding line, status messages, field hints (e.g. multi-select, “add courses first”), skip link, scrollable tables on small screens, and empty-state messaging. |
 
 ## 4. Verify the graph (optional)
 
