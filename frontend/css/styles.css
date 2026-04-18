@@ -311,6 +311,54 @@ tr:hover {
   border: 1px solid #bbf7d0;
 }
 
+/* Dashboard page */
+.dashboard-intro p,
+.dashboard-links > p {
+  margin-bottom: 12px;
+  max-width: 65ch;
+  color: #334155;
+}
+
+.dashboard-points {
+  margin: 0 0 12px;
+  padding-left: 1.25rem;
+  max-width: 65ch;
+  color: #334155;
+}
+
+.dashboard-points li {
+  margin-bottom: 8px;
+}
+
+.dashboard-points code {
+  font-size: 0.9em;
+  font-family: ui-monospace, 'Cascadia Code', 'Segoe UI Mono', monospace;
+  background: #f1f5f9;
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: #0f172a;
+}
+
+.dashboard-tip {
+  margin-top: 16px;
+  margin-bottom: 0;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  max-width: 65ch;
+  color: #334155;
+}
+
+.dashboard-links .dashboard-points a {
+  font-weight: 600;
+  color: var(--brand);
+  text-decoration: none;
+}
+
+.dashboard-links .dashboard-points a:hover {
+  color: var(--brand-dark);
+  text-decoration: underline;
+}
+
 @media (max-width: 600px) {
   .main-content {
     padding: 16px 14px 32px;

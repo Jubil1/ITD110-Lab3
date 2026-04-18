@@ -94,7 +94,7 @@ No build step. With the backend running:
 
 **Option A — open files directly**
 
-Open `frontend/index.html` in your browser (double-click or “Open with” browser).
+Open `frontend/dashboard.html` (overview) or `frontend/index.html` in your browser (double-click or “Open with” browser).
 
 **Option B — simple static server**
 
@@ -153,7 +153,7 @@ ITD110-Lab3/
 │   ├── controllers/
 │   ├── routes/
 │   └── server.js
-├── frontend/         # Static HTML/CSS/JS
+├── frontend/         # Static HTML/CSS/JS (`dashboard.html`, `index.html`, …)
 └── README.md
 ```
 

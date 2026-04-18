@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ITD110 Lab 3 — Dashboard overview for the Neo4j student management system.">
+    <title>Dashboard — Management System</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <main id="main" class="main-content">
+        <div class="container">
+            <p class="site-meta"><strong>Management System</strong> <span class="site-meta__sub">ITD110 · Neo4j graph</span></p>
+            <h1>Dashboard</h1>
+            <nav class="top-nav" aria-label="Site navigation">
+                <ul class="top-nav__list">
+                    <li><a href="dashboard.html" class="top-nav__link active"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg></span> Dashboard</a></li>
+                    <li><a href="index.html" class="top-nav__link"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span> Students</a></li>
+                    <li><a href="faculty.html" class="top-nav__link"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span> Faculty</a></li>
+                    <li><a href="course.html" class="top-nav__link"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span> Courses</a></li>
+                </ul>
+            </nav>
+
+            <section class="form-container dashboard-intro">
+                <h2>About this system</h2>
+                <p>
+                    This is an <strong>ITD110 Lab 3</strong> demo app: a small management UI on top of a
+                    <strong>Neo4j</strong> graph database. The backend (Node.js + Express) stores
+                    <strong>Student</strong>, <strong>Faculty</strong>, and <strong>Course</strong> data as nodes and connects them with relationships—
+                    not with foreign keys in a single flat table.
+                </p>
+                <ul class="dashboard-points">
+                    <li><strong>Students</strong> can be linked to courses through an <code>ENROLLED_IN</code> relationship.</li>
+                    <li><strong>Faculty</strong> can be linked to courses through a <code>TEACHES</code> relationship.</li>
+                    <li><strong>Courses</strong> are the hub: the course list shows who is enrolled and who is teaching, pulled from the graph.</li>
+                </ul>
+                <p class="dashboard-tip">
+                    <strong>Tip:</strong> Add a few courses first, then assign students and faculty so the dropdowns and tables stay in sync.
+                </p>
+            </section>
+
+            <section class="table-container dashboard-links">
+                <h2>Where to go next</h2>
+                <ul class="dashboard-points">
+                    <li><a href="index.html">Students</a> — create, edit, or remove students and their enrollments.</li>
+                    <li><a href="faculty.html">Faculty</a> — manage faculty and which courses they teach.</li>
+                    <li><a href="course.html">Courses</a> — maintain the course catalog; related people appear from the graph.</li>
+                </ul>
+            </section>
+        </div>
+    </main>
+</body>
+</html>
