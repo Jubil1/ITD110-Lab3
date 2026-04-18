@@ -105,6 +105,8 @@ npx --yes serve .
 
 Use the URL printed in the terminal (often `http://localhost:3000`).
 
+**Note:** `npm serve` is not a valid command. You must use **`npx`** (as above) so Node runs the `serve` package.
+
 Use the sidebar to switch between **Students**, **Faculty**, and **Courses**. Create courses first if you need enrollment / teaching assignments in the dropdowns.
 
 ## 4. Verify the graph (optional)
