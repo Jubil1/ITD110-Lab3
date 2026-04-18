@@ -11,6 +11,7 @@ const descriptionInput = document.getElementById('description');
 const creditsInput = document.getElementById('credits');
 const tbody = document.getElementById('course-tbody');
 const noCoursesMsg = document.getElementById('no-courses');
+const courseTableWrap = document.getElementById('course-table-wrap');
 const statusEl = document.getElementById('status');
 
 let isEditing = false;
@@ -54,10 +55,12 @@ function renderCourses(courses) {
 
   if (!courses.length) {
     noCoursesMsg.classList.remove('hidden');
+    if (courseTableWrap) courseTableWrap.classList.add('hidden');
     return;
   }
 
   noCoursesMsg.classList.add('hidden');
+  if (courseTableWrap) courseTableWrap.classList.remove('hidden');
 
   courses.forEach((course) => {
     const row = document.createElement('tr');

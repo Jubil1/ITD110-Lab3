@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ITD110 Lab 3 — Manage students and ENROLLED_IN course relationships in Neo4j.">
     <title>Student Management System</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <aside class="sidebar">
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <aside class="sidebar" aria-label="Site navigation">
         <div class="sidebar-header">
             <h2>Management System</h2>
+            <p class="sidebar-tagline">ITD110 · Neo4j graph</p>
         </div>
         <ul class="sidebar-nav">
             <li><a href="index.html" class="active"><span class="icon">&#128218;</span> Students</a></li>
@@ -18,10 +21,14 @@
         </ul>
     </aside>
 
-    <main class="main-content">
+    <main id="main" class="main-content">
         <div class="container">
             <h1>Student Management System</h1>
-            <div id="status" class="status hidden"></div>
+            <p class="page-intro">
+                Add <strong>Student</strong> nodes and link them to courses with an <strong>ENROLLED_IN</strong> relationship.
+                Use <strong>Edit</strong> / <strong>Delete</strong> for full CRUD. Create courses first so enrollments appear in the list.
+            </p>
+            <div id="status" class="status hidden" role="status" aria-live="polite"></div>
 
             <div class="form-container">
                 <h2 id="form-title">Add New Student</h2>
@@ -41,7 +48,8 @@
                     </div>
                     <div class="form-group">
                         <label for="courses">Enrolled Courses (Hold Ctrl/Cmd to select multiple)</label>
-                        <select id="courses" name="courses" multiple></select>
+                        <select id="courses" name="courses" multiple aria-describedby="courses-hint"></select>
+                        <p id="courses-hint" class="field-hint">Loading courses…</p>
                     </div>
                     <div class="form-actions">
                         <button type="submit" id="submit-btn">Add Student</button>
@@ -52,6 +60,7 @@
 
             <div class="table-container">
                 <h2>Student List</h2>
+                <div class="table-scroll" id="students-table-wrap">
                 <table id="students-table">
                     <thead>
                         <tr>
@@ -64,7 +73,8 @@
                     </thead>
                     <tbody id="students-tbody"></tbody>
                 </table>
-                <p id="no-students" class="hidden">No students found.</p>
+                </div>
+                <p id="no-students" class="empty-state hidden" role="status">No students yet. Fill out the form above and click <strong>Add Student</strong>.</p>
             </div>
         </div>
     </main>

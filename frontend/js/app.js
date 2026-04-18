@@ -12,6 +12,8 @@ const emailInput = document.getElementById('email');
 const coursesSelect = document.getElementById('courses');
 const tbody = document.getElementById('students-tbody');
 const noStudentsMsg = document.getElementById('no-students');
+const studentsTableWrap = document.getElementById('students-table-wrap');
+const coursesHint = document.getElementById('courses-hint');
 const statusEl = document.getElementById('status');
 
 let isEditing = false;
@@ -62,6 +64,11 @@ function populateCourseSelect(selectedIds = []) {
     if (selectedIds.includes(course._id)) option.selected = true;
     coursesSelect.appendChild(option);
   });
+  if (coursesHint) {
+    coursesHint.textContent = allCourses.length
+      ? 'Tip: Hold Ctrl (Windows) or ⌘ (Mac) while clicking to select multiple courses.'
+      : 'No courses yet. Open the Courses page and add at least one course first.';
+  }
 }
 
 function getSelectedCourses() {
@@ -85,10 +92,12 @@ function renderStudents(students) {
 
   if (!students.length) {
     noStudentsMsg.classList.remove('hidden');
+    if (studentsTableWrap) studentsTableWrap.classList.add('hidden');
     return;
   }
 
   noStudentsMsg.classList.add('hidden');
+  if (studentsTableWrap) studentsTableWrap.classList.remove('hidden');
 
   students.forEach((student) => {
     const row = document.createElement('tr');

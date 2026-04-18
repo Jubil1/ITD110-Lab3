@@ -12,6 +12,8 @@ const departmentInput = document.getElementById('department');
 const coursesSelect = document.getElementById('courses');
 const tbody = document.getElementById('faculty-tbody');
 const noFacultyMsg = document.getElementById('no-faculty');
+const facultyTableWrap = document.getElementById('faculty-table-wrap');
+const coursesHint = document.getElementById('courses-hint');
 const statusEl = document.getElementById('status');
 
 let isEditing = false;
@@ -62,6 +64,11 @@ function populateCourseSelect(selectedIds = []) {
     if (selectedIds.includes(course._id)) option.selected = true;
     coursesSelect.appendChild(option);
   });
+  if (coursesHint) {
+    coursesHint.textContent = allCourses.length
+      ? 'Tip: Hold Ctrl (Windows) or ⌘ (Mac) while clicking to assign multiple courses.'
+      : 'No courses yet. Open the Courses page and add at least one course first.';
+  }
 }
 
 function getSelectedCourses() {
@@ -85,10 +92,12 @@ function renderFaculties(faculties) {
 
   if (!faculties.length) {
     noFacultyMsg.classList.remove('hidden');
+    if (facultyTableWrap) facultyTableWrap.classList.add('hidden');
     return;
   }
 
   noFacultyMsg.classList.add('hidden');
+  if (facultyTableWrap) facultyTableWrap.classList.remove('hidden');
 
   faculties.forEach((faculty) => {
     const row = document.createElement('tr');

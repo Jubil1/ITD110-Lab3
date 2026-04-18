@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ITD110 Lab 3 — Manage faculty and TEACHES course relationships in Neo4j.">
     <title>Faculty Management System</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <aside class="sidebar">
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <aside class="sidebar" aria-label="Site navigation">
         <div class="sidebar-header">
             <h2>Management System</h2>
+            <p class="sidebar-tagline">ITD110 · Neo4j graph</p>
         </div>
         <ul class="sidebar-nav">
             <li><a href="index.html"><span class="icon">&#128218;</span> Students</a></li>
@@ -18,10 +21,14 @@
         </ul>
     </aside>
 
-    <main class="main-content">
+    <main id="main" class="main-content">
         <div class="container">
             <h1>Faculty Management System</h1>
-            <div id="status" class="status hidden"></div>
+            <p class="page-intro">
+                Add <strong>Faculty</strong> nodes and link them to courses with a <strong>TEACHES</strong> relationship.
+                Full CRUD is available via the form and the action buttons in the table.
+            </p>
+            <div id="status" class="status hidden" role="status" aria-live="polite"></div>
 
             <div class="form-container">
                 <h2 id="form-title">Add New Faculty</h2>
@@ -41,7 +48,8 @@
                     </div>
                     <div class="form-group">
                         <label for="courses">Teaching Load (Hold Ctrl/Cmd to select multiple)</label>
-                        <select id="courses" name="courses" multiple></select>
+                        <select id="courses" name="courses" multiple aria-describedby="courses-hint"></select>
+                        <p id="courses-hint" class="field-hint">Loading courses…</p>
                     </div>
                     <div class="form-actions">
                         <button type="submit" id="submit-btn">Add Faculty</button>
@@ -52,6 +60,7 @@
 
             <div class="table-container">
                 <h2>Faculty List</h2>
+                <div class="table-scroll" id="faculty-table-wrap">
                 <table id="faculty-table">
                     <thead>
                         <tr>
@@ -64,7 +73,8 @@
                     </thead>
                     <tbody id="faculty-tbody"></tbody>
                 </table>
-                <p id="no-faculty" class="hidden">No faculty found.</p>
+                </div>
+                <p id="no-faculty" class="empty-state hidden" role="status">No faculty yet. Use the form above to add your first record.</p>
             </div>
         </div>
     </main>

@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ITD110 Lab 3 — Manage Course nodes and see related students and faculty from the graph.">
     <title>Course Management System</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <aside class="sidebar">
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <aside class="sidebar" aria-label="Site navigation">
         <div class="sidebar-header">
             <h2>Management System</h2>
+            <p class="sidebar-tagline">ITD110 · Neo4j graph</p>
         </div>
         <ul class="sidebar-nav">
             <li><a href="index.html"><span class="icon">&#128218;</span> Students</a></li>
@@ -18,10 +21,14 @@
         </ul>
     </aside>
 
-    <main class="main-content">
+    <main id="main" class="main-content">
         <div class="container">
             <h1>Course Management System</h1>
-            <div id="status" class="status hidden"></div>
+            <p class="page-intro">
+                Manage <strong>Course</strong> nodes. Enrolled students and teaching faculty in the table are read from
+                <strong>ENROLLED_IN</strong> and <strong>TEACHES</strong> relationships in Neo4j (not edited on this page).
+            </p>
+            <div id="status" class="status hidden" role="status" aria-live="polite"></div>
 
             <div class="form-container">
                 <h2 id="form-title">Add New Course</h2>
@@ -41,7 +48,8 @@
                     </div>
                     <div class="form-group">
                         <label for="credits">Credits</label>
-                        <input type="number" id="credits" name="credits" min="1" max="10">
+                        <input type="number" id="credits" name="credits" min="1" max="10" aria-describedby="credits-hint">
+                        <p id="credits-hint" class="field-hint">Optional for create; use 1–10 if you enter a value.</p>
                     </div>
                     <div class="form-actions">
                         <button type="submit" id="submit-btn">Add Course</button>
@@ -52,6 +60,7 @@
 
             <div class="table-container">
                 <h2>Course List</h2>
+                <div class="table-scroll" id="course-table-wrap">
                 <table id="course-table">
                     <thead>
                         <tr>
@@ -66,7 +75,8 @@
                     </thead>
                     <tbody id="course-tbody"></tbody>
                 </table>
-                <p id="no-courses" class="hidden">No courses found.</p>
+                </div>
+                <p id="no-courses" class="empty-state hidden" role="status">No courses yet. Add one with the form above (courses are required before student/faculty links).</p>
             </div>
         </div>
     </main>
