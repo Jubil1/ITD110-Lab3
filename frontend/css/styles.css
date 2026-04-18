@@ -265,11 +265,26 @@ tr:hover {
   background: #f8fafc;
 }
 
+/* Action cells: inner flex keeps buttons aligned without breaking table column layout */
+td:has(.table-row-actions) {
+  width: 1%;
+  white-space: nowrap;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.table-row-actions {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+}
+
 .btn-edit {
   background: var(--warn);
   color: #fff;
   padding: 6px 10px;
-  margin-right: 6px;
 }
 
 .btn-delete {

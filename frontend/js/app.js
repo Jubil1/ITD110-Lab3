@@ -127,8 +127,10 @@ function renderStudents(students) {
       <td>${escapeHtml(student.email)}</td>
       <td>${courseNames}</td>
       <td>
-        <button class="btn-edit" onclick="editStudent('${student._id}')">Edit</button>
-        <button class="btn-delete" onclick="deleteStudent('${student._id}')">Delete</button>
+        <div class="table-row-actions">
+          <button class="btn-edit" onclick="editStudent('${student._id}')">Edit</button>
+          <button class="btn-delete" onclick="deleteStudent('${student._id}')">Delete</button>
+        </div>
       </td>
     `;
     tbody.appendChild(row);

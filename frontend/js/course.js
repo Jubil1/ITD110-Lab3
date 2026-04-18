@@ -97,8 +97,10 @@ function renderCourses(courses) {
       <td>${studentNames}</td>
       <td>${facultyNames}</td>
       <td>
-        <button class="btn-edit" onclick="editCourse('${course._id}')">Edit</button>
-        <button class="btn-delete" onclick="deleteCourse('${course._id}')">Delete</button>
+        <div class="table-row-actions">
+          <button class="btn-edit" onclick="editCourse('${course._id}')">Edit</button>
+          <button class="btn-delete" onclick="deleteCourse('${course._id}')">Delete</button>
+        </div>
       </td>
     `;
     tbody.appendChild(row);

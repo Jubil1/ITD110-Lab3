@@ -127,8 +127,10 @@ function renderFaculties(faculties) {
       <td>${escapeHtml(faculty.department)}</td>
       <td>${courseNames}</td>
       <td>
-        <button class="btn-edit" onclick="editFaculty('${faculty._id}')">Edit</button>
-        <button class="btn-delete" onclick="deleteFaculty('${faculty._id}')">Delete</button>
+        <div class="table-row-actions">
+          <button class="btn-edit" onclick="editFaculty('${faculty._id}')">Edit</button>
+          <button class="btn-delete" onclick="deleteFaculty('${faculty._id}')">Delete</button>
+        </div>
       </td>
     `;
     tbody.appendChild(row);

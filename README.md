@@ -115,6 +115,10 @@ Use the URL printed in the terminal (often `http://localhost:3000`).
 
 **Note:** `npm serve` is not a valid command. You must use **`npx`** (as above) so Node runs the `serve` package.
 
+### Wide tables and row actions
+
+Tables on **Students**, **Faculty**, **Courses**, and **Lists** put **Edit** and **Delete** in the last column. Each pair is wrapped in `<div class="table-row-actions">` with `display: inline-flex` and a small gap in `frontend/css/styles.css`. That keeps both buttons on one row and avoids overlap with the previous column. The cell itself stays a normal table cell (`display: table-cell`); using `display: flex` directly on `<td>` was removed because it breaks the table layout grid and can make **Actions** draw over **Teaching Faculty** (or similar) on wide course rows.
+
 ### Pages and navigation
 
 Top navigation (under the page title), left to right:
@@ -137,7 +141,7 @@ After a successful **Add** or **Update** on Students, Faculty, or Courses, a gre
 |---------------|--------------------------------|
 | **≥ 2 nodes + relationships** | Create e.g. a **Course** and a **Student** (with **ENROLLED_IN**) and/or **Faculty** (with **TEACHES**). Use Neo4j Browser: `MATCH (n) RETURN n` to show the graph. |
 | **Full CRUD** | Each entity has **Create** (form submit), **Read** (tables + load for Edit), **Update** (Edit + save), **Delete** (Delete + confirm) via `/api/students`, `/api/faculty`, `/api/courses`. |
-| **Improved UI/UX** | Top navigation (Dashboard → entity pages → **Lists**), branding line, status messages (including post-save link to Lists), field hints (e.g. multi-select, “add courses first”), skip link, scrollable tables on small screens, empty-state messaging, and **Lists** for a combined view of all tables. |
+| **Improved UI/UX** | Top navigation (Dashboard → entity pages → **Lists**), branding line, status messages (including post-save link to Lists), field hints (e.g. multi-select, “add courses first”), skip link, scrollable tables on small screens, empty-state messaging, **Lists** for a combined view of all tables, and stable **Edit/Delete** layout in table cells (see **Wide tables and row actions** above). |
 
 ## 4. Verify the graph (optional)
 

@@ -60,8 +60,10 @@ function renderStudents(students) {
       <td>${escapeHtml(student.email)}</td>
       <td>${courseNames}</td>
       <td>
-        <button type="button" class="btn-edit" data-action="edit-student" data-id="${student._id}">Edit</button>
-        <button type="button" class="btn-delete" data-action="delete-student" data-id="${student._id}">Delete</button>
+        <div class="table-row-actions">
+          <button type="button" class="btn-edit" data-action="edit-student" data-id="${student._id}">Edit</button>
+          <button type="button" class="btn-delete" data-action="delete-student" data-id="${student._id}">Delete</button>
+        </div>
       </td>
     `;
     tbody.appendChild(row);
@@ -93,8 +95,10 @@ function renderFaculty(list) {
       <td>${escapeHtml(faculty.department)}</td>
       <td>${courseNames}</td>
       <td>
-        <button type="button" class="btn-edit" data-action="edit-faculty" data-id="${faculty._id}">Edit</button>
-        <button type="button" class="btn-delete" data-action="delete-faculty" data-id="${faculty._id}">Delete</button>
+        <div class="table-row-actions">
+          <button type="button" class="btn-edit" data-action="edit-faculty" data-id="${faculty._id}">Edit</button>
+          <button type="button" class="btn-delete" data-action="delete-faculty" data-id="${faculty._id}">Delete</button>
+        </div>
       </td>
     `;
     tbody.appendChild(row);
@@ -131,8 +135,10 @@ function renderCourses(courses) {
       <td>${studentNames}</td>
       <td>${facultyNames}</td>
       <td>
-        <button type="button" class="btn-edit" data-action="edit-course" data-id="${course._id}">Edit</button>
-        <button type="button" class="btn-delete" data-action="delete-course" data-id="${course._id}">Delete</button>
+        <div class="table-row-actions">
+          <button type="button" class="btn-edit" data-action="edit-course" data-id="${course._id}">Edit</button>
+          <button type="button" class="btn-delete" data-action="delete-course" data-id="${course._id}">Delete</button>
+        </div>
       </td>
     `;
     tbody.appendChild(row);
