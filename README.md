@@ -13,7 +13,7 @@ Full-stack lab project: **Express** backend talking to **Neo4j** over Bolt, and 
 
 ## Video demo
 
-<!-- Add your screen recording or hosted link before submission (e.g. YouTube unlisted, Drive, or course LMS). -->
+https://github.com/user-attachments/assets/85c3f964-b82c-4d40-b479-7d1d6a16cae1
 
 **Demo link:** *[paste your video URL here]*
 
