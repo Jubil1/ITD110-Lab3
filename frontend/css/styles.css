@@ -311,18 +311,32 @@ tr:hover {
   border: 1px solid #bbf7d0;
 }
 
-/* Dashboard page */
+/* Dashboard page — centered copy; lists stay readable as a centered block */
+.dashboard-intro,
+.dashboard-links {
+  text-align: center;
+}
+
+.dashboard-intro h2,
+.dashboard-links h2 {
+  text-align: center;
+}
+
 .dashboard-intro p,
 .dashboard-links > p {
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: 12px;
   max-width: 65ch;
   color: #334155;
 }
 
 .dashboard-points {
-  margin: 0 0 12px;
+  display: inline-block;
+  margin: 0 auto 12px;
   padding-left: 1.25rem;
   max-width: 65ch;
+  text-align: left;
   color: #334155;
 }
 
@@ -341,6 +355,8 @@ tr:hover {
 
 .dashboard-tip {
   margin-top: 16px;
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: 0;
   padding-top: 14px;
   border-top: 1px solid var(--line);
