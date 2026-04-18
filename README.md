@@ -115,7 +115,7 @@ Use the sidebar to switch between **Students**, **Faculty**, and **Courses**. Cr
 |---------------|--------------------------------|
 | **≥ 2 nodes + relationships** | Create e.g. a **Course** and a **Student** (with **ENROLLED_IN**) and/or **Faculty** (with **TEACHES**). Use Neo4j Browser: `MATCH (n) RETURN n` to show the graph. |
 | **Full CRUD** | Each entity has **Create** (form submit), **Read** (tables + load for Edit), **Update** (Edit + save), **Delete** (Delete + confirm) via `/api/students`, `/api/faculty`, `/api/courses`. |
-| **Improved UI/UX** | Clear page intros, sidebar branding, status messages, field hints (e.g. multi-select, “add courses first”), skip link, scrollable tables on small screens, and empty-state messaging. |
+| **Improved UI/UX** | Sidebar branding, status messages, field hints (e.g. multi-select, “add courses first”), skip link, scrollable tables on small screens, and empty-state messaging. |
 
 ## 4. Verify the graph (optional)
 

@@ -108,18 +108,7 @@ body {
 }
 
 h1 {
-  margin-bottom: 12px;
-}
-
-.page-intro {
-  max-width: 70ch;
-  margin: 0 0 20px;
-  padding: 14px 16px;
-  background: #e8eef7;
-  border: 1px solid #c7d7eb;
-  border-radius: 10px;
-  color: #334155;
-  font-size: 0.95rem;
+  margin-bottom: 20px;
 }
 
 .field-hint {
