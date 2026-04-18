@@ -16,7 +16,14 @@ const statusEl = document.getElementById('status');
 
 let isEditing = false;
 
-document.addEventListener('DOMContentLoaded', fetchCourses);
+document.addEventListener('DOMContentLoaded', async () => {
+  await fetchCourses();
+  const pending = sessionStorage.getItem('pendingCourseEdit');
+  if (pending) {
+    sessionStorage.removeItem('pendingCourseEdit');
+    await editCourse(pending);
+  }
+});
 
 form.addEventListener('submit', handleSubmit);
 cancelBtn.addEventListener('click', resetForm);
@@ -31,6 +38,17 @@ function setStatus(message = '', type = '') {
   statusEl.textContent = message;
 }
 
+function setSaveSuccessStatus(messageText) {
+  statusEl.replaceChildren();
+  statusEl.className = 'status success';
+  statusEl.append(document.createTextNode(`${messageText} `));
+  const a = document.createElement('a');
+  a.href = 'lists.html';
+  a.className = 'status__link';
+  a.textContent = 'View all tables';
+  statusEl.append(a, document.createTextNode('.'));
+}
+
 async function request(url, options = {}) {
   const res = await fetch(url, options);
   const data = await res.json().catch(() => ({}));
@@ -40,11 +58,11 @@ async function request(url, options = {}) {
   return data;
 }
 
-async function fetchCourses() {
+async function fetchCourses(clearBanner = true) {
   try {
     const courses = await request(API_URL);
     renderCourses(courses);
-    setStatus('');
+    if (clearBanner) setStatus('');
   } catch (error) {
     setStatus(`Error fetching courses: ${error.message}`, 'error');
   }
@@ -106,24 +124,26 @@ async function handleSubmit(e) {
 
   submitBtn.disabled = true;
   try {
-    if (isEditing) {
+    const wasEditing = isEditing;
+    if (wasEditing) {
       await request(`${API_URL}/${courseIdInput.value}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(courseData),
       });
-      setStatus('Course updated successfully.', 'success');
     } else {
       await request(API_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(courseData),
       });
-      setStatus('Course created successfully.', 'success');
     }
 
     resetForm();
-    await fetchCourses();
+    await fetchCourses(false);
+    setSaveSuccessStatus(
+      wasEditing ? 'Course updated successfully.' : 'Course created successfully.'
+    );
   } catch (error) {
     setStatus(`Error saving course: ${error.message}`, 'error');
   } finally {
@@ -158,7 +178,7 @@ async function deleteCourse(id) {
   try {
     await request(`${API_URL}/${id}`, { method: 'DELETE' });
     setStatus('Course deleted successfully.', 'success');
-    await fetchCourses();
+    await fetchCourses(false);
   } catch (error) {
     setStatus(`Error deleting course: ${error.message}`, 'error');
   }

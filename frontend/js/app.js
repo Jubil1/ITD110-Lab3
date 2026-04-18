@@ -22,6 +22,11 @@ let allCourses = [];
 document.addEventListener('DOMContentLoaded', async () => {
   await fetchCourses();
   await fetchStudents();
+  const pending = sessionStorage.getItem('pendingStudentEdit');
+  if (pending) {
+    sessionStorage.removeItem('pendingStudentEdit');
+    await editStudent(pending);
+  }
 });
 
 form.addEventListener('submit', handleSubmit);
@@ -35,6 +40,17 @@ function setStatus(message = '', type = '') {
   }
   statusEl.className = `status ${type}`;
   statusEl.textContent = message;
+}
+
+function setSaveSuccessStatus(messageText) {
+  statusEl.replaceChildren();
+  statusEl.className = 'status success';
+  statusEl.append(document.createTextNode(`${messageText} `));
+  const a = document.createElement('a');
+  a.href = 'lists.html';
+  a.className = 'status__link';
+  a.textContent = 'View all tables';
+  statusEl.append(a, document.createTextNode('.'));
 }
 
 async function request(url, options = {}) {
@@ -77,11 +93,11 @@ function getSelectedCourses() {
     .map((option) => option.value);
 }
 
-async function fetchStudents() {
+async function fetchStudents(clearBanner = true) {
   try {
     const students = await request(API_URL);
     renderStudents(students);
-    setStatus('');
+    if (clearBanner) setStatus('');
   } catch (error) {
     setStatus(`Error fetching students: ${error.message}`, 'error');
   }
@@ -137,24 +153,26 @@ async function handleSubmit(e) {
 
   submitBtn.disabled = true;
   try {
-    if (isEditing) {
+    const wasEditing = isEditing;
+    if (wasEditing) {
       await request(`${API_URL}/${studentIdInput.value}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(studentData),
       });
-      setStatus('Student updated successfully.', 'success');
     } else {
       await request(API_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(studentData),
       });
-      setStatus('Student created successfully.', 'success');
     }
 
     resetForm();
-    await fetchStudents();
+    await fetchStudents(false);
+    setSaveSuccessStatus(
+      wasEditing ? 'Student updated successfully.' : 'Student created successfully.'
+    );
   } catch (error) {
     setStatus(`Error saving student: ${error.message}`, 'error');
   } finally {
@@ -191,7 +209,7 @@ async function deleteStudent(id) {
   try {
     await request(`${API_URL}/${id}`, { method: 'DELETE' });
     setStatus('Student deleted successfully.', 'success');
-    await fetchStudents();
+    await fetchStudents(false);
   } catch (error) {
     setStatus(`Error deleting student: ${error.message}`, 'error');
   }

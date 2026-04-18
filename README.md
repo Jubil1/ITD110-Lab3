@@ -11,6 +11,14 @@ Full-stack lab project: **Express** backend talking to **Neo4j** over Bolt, and 
 - [Neo4j Desktop](https://neo4j.com/download/) (local DBMS)  
 - Git (optional)
 
+## Video demo
+
+<!-- Add your screen recording or hosted link before submission (e.g. YouTube unlisted, Drive, or course LMS). -->
+
+**Demo link:** *[paste your video URL here]*
+
+---
+
 ## 1. Neo4j Desktop
 
 1. Create a **local instance** (Neo4j Desktop 2.x: **Create instance**).  
@@ -94,7 +102,7 @@ No build step. With the backend running:
 
 **Option A — open files directly**
 
-Open `frontend/dashboard.html` (overview) or `frontend/index.html` in your browser (double-click or “Open with” browser).
+Open `frontend/index.html` in your browser (double-click or “Open with” browser).
 
 **Option B — simple static server**
 
@@ -107,7 +115,21 @@ Use the URL printed in the terminal (often `http://localhost:3000`).
 
 **Note:** `npm serve` is not a valid command. You must use **`npx`** (as above) so Node runs the `serve` package.
 
-Use the **top navigation** (under the page title) to switch between **Students**, **Faculty**, and **Courses**. Create courses first if you need enrollment / teaching assignments in the dropdowns.
+### Pages and navigation
+
+Top navigation (under the page title), left to right:
+
+| Page | File | Role |
+|------|------|------|
+| **Dashboard** | `dashboard.html` | Short intro to the system and where to go next. |
+| **Students** | `index.html` | Student CRUD + table. |
+| **Faculty** | `faculty.html` | Faculty CRUD + table. |
+| **Courses** | `course.html` | Course CRUD + table. |
+| **Lists** | `lists.html` | All three **tables** in one place: inner tabs (**Students** / **Faculty** / **Courses**). **Edit** jumps to the matching page with the form loaded; **Delete** runs on Lists and refreshes that tab. |
+
+Create **courses** first if you need enrollment / teaching assignments in the student and faculty dropdowns.
+
+After a successful **Add** or **Update** on Students, Faculty, or Courses, a green status line includes a **View all tables** link to **Lists**.
 
 ## Course activity checklist (ITD110 Lab 3)
 
@@ -115,7 +137,7 @@ Use the **top navigation** (under the page title) to switch between **Students**
 |---------------|--------------------------------|
 | **≥ 2 nodes + relationships** | Create e.g. a **Course** and a **Student** (with **ENROLLED_IN**) and/or **Faculty** (with **TEACHES**). Use Neo4j Browser: `MATCH (n) RETURN n` to show the graph. |
 | **Full CRUD** | Each entity has **Create** (form submit), **Read** (tables + load for Edit), **Update** (Edit + save), **Delete** (Delete + confirm) via `/api/students`, `/api/faculty`, `/api/courses`. |
-| **Improved UI/UX** | Top navigation under the page title, site branding line, status messages, field hints (e.g. multi-select, “add courses first”), skip link, scrollable tables on small screens, and empty-state messaging. |
+| **Improved UI/UX** | Top navigation (Dashboard → entity pages → **Lists**), branding line, status messages (including post-save link to Lists), field hints (e.g. multi-select, “add courses first”), skip link, scrollable tables on small screens, empty-state messaging, and **Lists** for a combined view of all tables. |
 
 ## 4. Verify the graph (optional)
 
@@ -153,7 +175,14 @@ ITD110-Lab3/
 │   ├── controllers/
 │   ├── routes/
 │   └── server.js
-├── frontend/         # Static HTML/CSS/JS (`dashboard.html`, `index.html`, …)
+├── frontend/         # Static HTML/CSS/JS
+│   ├── dashboard.html
+│   ├── lists.html
+│   ├── index.html    # Students
+│   ├── faculty.html
+│   ├── course.html
+│   ├── css/
+│   └── js/
 └── README.md
 ```
 

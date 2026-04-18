@@ -311,6 +311,16 @@ tr:hover {
   border: 1px solid #bbf7d0;
 }
 
+.status.success .status__link {
+  color: #15803d;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.status.success .status__link:hover {
+  color: #14532d;
+}
+
 /* Dashboard page — centered copy; lists stay readable as a centered block */
 .dashboard-intro,
 .dashboard-links {
@@ -373,6 +383,61 @@ tr:hover {
 .dashboard-links .dashboard-points a:hover {
   color: var(--brand-dark);
   text-decoration: underline;
+}
+
+/* Lists hub — inner tabs + one panel at a time */
+.lists-hub .lists-panel h2 {
+  margin-top: 0;
+}
+
+.lists-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto 14px;
+  padding: 3px 4px;
+  background: #f1f5f9;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+}
+
+.lists-tab {
+  flex: 0 1 auto;
+  padding: 5px 11px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: transparent;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+  font-family: inherit;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.lists-tab:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.lists-tab:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 1px;
+}
+
+.lists-tab[aria-selected="true"] {
+  background: var(--card);
+  color: #0f172a;
+  border-color: var(--line);
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+}
+
+.lists-hub .table-container {
+  margin-bottom: 0;
 }
 
 @media (max-width: 600px) {

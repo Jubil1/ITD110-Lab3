@@ -22,6 +22,11 @@ let allCourses = [];
 document.addEventListener('DOMContentLoaded', async () => {
   await fetchCoursesForSelect();
   await fetchFaculties();
+  const pending = sessionStorage.getItem('pendingFacultyEdit');
+  if (pending) {
+    sessionStorage.removeItem('pendingFacultyEdit');
+    await editFaculty(pending);
+  }
 });
 
 form.addEventListener('submit', handleSubmit);
@@ -35,6 +40,17 @@ function setStatus(message = '', type = '') {
   }
   statusEl.className = `status ${type}`;
   statusEl.textContent = message;
+}
+
+function setSaveSuccessStatus(messageText) {
+  statusEl.replaceChildren();
+  statusEl.className = 'status success';
+  statusEl.append(document.createTextNode(`${messageText} `));
+  const a = document.createElement('a');
+  a.href = 'lists.html';
+  a.className = 'status__link';
+  a.textContent = 'View all tables';
+  statusEl.append(a, document.createTextNode('.'));
 }
 
 async function request(url, options = {}) {
@@ -77,11 +93,11 @@ function getSelectedCourses() {
     .map((option) => option.value);
 }
 
-async function fetchFaculties() {
+async function fetchFaculties(clearBanner = true) {
   try {
     const faculties = await request(API_URL);
     renderFaculties(faculties);
-    setStatus('');
+    if (clearBanner) setStatus('');
   } catch (error) {
     setStatus(`Error fetching faculty: ${error.message}`, 'error');
   }
@@ -137,24 +153,26 @@ async function handleSubmit(e) {
 
   submitBtn.disabled = true;
   try {
-    if (isEditing) {
+    const wasEditing = isEditing;
+    if (wasEditing) {
       await request(`${API_URL}/${facultyIdInput.value}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(facultyData),
       });
-      setStatus('Faculty updated successfully.', 'success');
     } else {
       await request(API_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(facultyData),
       });
-      setStatus('Faculty created successfully.', 'success');
     }
 
     resetForm();
-    await fetchFaculties();
+    await fetchFaculties(false);
+    setSaveSuccessStatus(
+      wasEditing ? 'Faculty updated successfully.' : 'Faculty created successfully.'
+    );
   } catch (error) {
     setStatus(`Error saving faculty: ${error.message}`, 'error');
   } finally {
@@ -191,7 +209,7 @@ async function deleteFaculty(id) {
   try {
     await request(`${API_URL}/${id}`, { method: 'DELETE' });
     setStatus('Faculty deleted successfully.', 'success');
-    await fetchFaculties();
+    await fetchFaculties(false);
   } catch (error) {
     setStatus(`Error deleting faculty: ${error.message}`, 'error');
   }
