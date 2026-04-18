@@ -92,8 +92,22 @@ body {
   border-left-color: var(--brand);
 }
 
-.sidebar-nav a .icon {
+/* Monochrome outline icons (inherit link color) */
+.nav-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
   margin-right: 10px;
+  flex-shrink: 0;
+  color: inherit;
+}
+
+.nav-icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
 .main-content {
